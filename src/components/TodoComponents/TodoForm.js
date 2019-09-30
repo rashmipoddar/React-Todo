@@ -27,6 +27,11 @@ class TodoForm extends React.Component {
     });
   }
 
+  handleClick = (event) => {
+    event.preventDefault();
+    this.props.removeCompletedTasks();
+  }
+
   render() {
     return (
       // <form onSubmit={() => this.props.addTodo(this.state.task)}>
@@ -42,7 +47,7 @@ class TodoForm extends React.Component {
           />
           <button>Add Todo</button>
         </form>
-        <button>Clear Completed</button>
+        <button onClick={this.handleClick}>Clear Completed</button>
       </>
     )
   }

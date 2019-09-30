@@ -28,13 +28,37 @@ class App extends React.Component {
     })
   }
 
+  modifyTaskStatus = (taskId) => {
+    console.log('Clicked');
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === taskId) {
+          return {
+            id: taskId,
+            task: todo.task,
+            completed: !todo.completed
+          } 
+        } else {
+          return todo;
+        }
+      })
+    })
+  }
+
+  removeCompletedTasks = () => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.completed)
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} modifyTaskStatus={this.modifyTaskStatus} />
         <TodoForm
           addTodo={this.addTodo}
+          removeCompletedTasks={this.removeCompletedTasks}
         />
       </div>
     );
