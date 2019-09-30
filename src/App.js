@@ -23,9 +23,18 @@ class App extends React.Component {
       task: newTask,
       completed: false
     };
+    
+    const callback = () => {
+      console.log(this.state.todos);
+      localStorage.setItem('list', JSON.stringify(this.state.todos));
+    }
     this.setState({
       todos: [...this.state.todos, newTodo]
-    })
+    }, callback)
+
+
+    // console.log(this.state.todos);
+    
   }
 
   modifyTaskStatus = (taskId) => {
